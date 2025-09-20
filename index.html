@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier Contable - Consultoría Creativa en Finanzas y Arte</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #204e3c;
+            --primary: #34986b;
+            --primary-light: #40916c;
+            --accent: #d8f3dc;
+            --text-dark: #0f2820;
+            --text-light: #f8f9fa;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: var(--text-dark);
+            background-color: #f8f9fa;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navegación */
+        .navigation {
+            background-color: var(--primary-dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 70px;
+            width: auto;
+            margin-right: 20px;
+        }
+        
+        .logo-text {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+        
+        .links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .mobile-button {
+            display: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(27, 67, 50, 0.9)), url('https://images.unsplash.com/photo-1518998053901-5348d3961a04?ixlib=rb-4.0.3') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, #f8f9fa, transparent);
+        }
+        
+        .pre-title {
+            font-size: 24px;
+            margin: 5px 0;
+            color: var(--accent);
+            font-weight: 400;
+        }
+        
+        .title {
+            font-size: 3.5rem;
+            margin: 10px 0;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .post-title {
+            font-size: 1.5rem;
+            margin: 20px 0 30px;
+            color: var(--accent);
+        }
+        
+        .btn-atelier {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-atelier:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Secciones generales */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        /* Servicios */
+        .services {
+            background-color: white;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            transition: var(--transition);
+            height: 100%;
+            border: 2px solid var(--primary-light) !important;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: white;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(45, 106, 79, 0.15);
+        }
+        
+        .card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            padding: 20px 20px 10px;
+        }
+        
+        .card-text {
+            padding: 0 20px 20px;
+        }
+        
+        /* Propuesta de valor */
+        .value-prop {
+            background-color: var(--accent);
+        }
+        
+        .value-item {
+            text-align: center;
+            padding: 30px 20px;
+            transition: var(--transition);
+        }
+        
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            font-size: 50px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .value-item:hover .value-icon {
+            transform: scale(1.1);
+        }
+        
+        /* Equipo */
+        .team {
+            background-color: white;
+        }
+        
+        .team-member {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+        
+        .team-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 4px solid var(--primary-light);
+            background: linear-gradient(45deg, var(--primary-light), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 70px;
+            transition: var(--transition);
+        }
+        
+        .team-member:hover .team-img {
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Contacto */
+        .contact {
+            background-color: white;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            font-size: 24px;
+            color: var(--primary);
+            margin-right: 15px;
+            width: 30px;
+        }
+        
+        .contact-info a {
+            color: var(--primary-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-info a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            font-size: 20px;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        .form-container {
+            background-color: var(--accent);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .privacy-text {
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        .privacy-text a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .privacy-text a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        /* WhatsApp flotante */
+        .whatsapp-float {
+            position: fixed;
+            width: 70px;
+            height:70px;
+            bottom: 70px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 70px;
+            text-align: center;
+            font-size: 40px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 70;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Menú móvil */
+        #mobile-sidenav {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: var(--primary-dark);
+            padding-top: 80px;
+            transition: 0.4s;
+            z-index: 1000;
+            box-shadow: -2px 0 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        #mobile-sidenav.mobile-links-active {
+            right: 0;
+        }
+        
+        #mobile-sidenav a {
+            padding: 18px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        #mobile-sidenav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding-left: 35px;
+        }
+        
+        #mobile-sidenav .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 30px;
+            border: none;
+        }
+        
+        /* Mensajes de formulario */
+        .form-message {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* Responsive */
+        @media screen and (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .title {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .links {
+                display: none;
+            }
+            
+            .mobile-button {
+                display: block;
+            }
+            
+            .hero {
+                padding: 120px 0;
+            }
+            
+            .title {
+                font-size: 2.3rem;
+            }
+            
+            .pre-title {
+                font-size: 1.2rem;
+            }
+            
+            .post-title {
+                font-size: 1.2rem;
+            }
+            
+            .cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+            
+            .team-img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                padding: 12px 15px;
+            }
+            
+            .logo {
+                height: 40px;
+            }
+            
+            .logo-text {
+                font-size: 20px;
+            }
+            
+            .hero {
+                padding: 100px 0;
+            }
+            
+            .btn-atelier {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <div class="navigation w3-container">
+        <nav class="nav-container">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Logo Atelier Contable" class="logo">
+                <a href="#home" class="logo-text">ATELIER CONTABLE</a>
+            </div>
+            <div class="links">
+                <a href="#about">Nosotros</a>
+                <a href="#services">Servicios</a>
+                <a href="#value">Propuesta de Valor</a>
+                <a href="#team">Equipo</a>
+                <a href="#contact">Contacto</a>            
+            </div>
+            <div class="mobile-button">
+                <span style="float: right;" onclick="toggleMobileNavigation()">&#9776;</span>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Menú móvil -->
+    <div id="mobile-sidenav" class="mobile-links">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleMobileNavigation()">&times;</a>
+        <a href="#about" onclick="toggleMobileNavigation()">Nosotros</a>
+        <a href="#services" onclick="toggleMobileNavigation()">Servicios</a>
+        <a href="#value" onclick="toggleMobileNavigation()">Propuesta de Valor</a>
+        <a href="#team" onclick="toggleMobileNavigation()">Equipo</a>
+        <a href="#contact" onclick="toggleMobileNavigation()">Contacto</a>
+    </div>
+
+    <!-- Botón de WhatsApp flotante -->
+    <a href="https://wa.me/573216139376?text=Hola,%20estoy%20interesado%20en%20los%20servicios%20de%20Atelier%20Contable" class="whatsapp-float" target="_blank">
+        <i class="fa fa-whatsapp"></i>
+    </a>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <p class="pre-title animate-fadeIn">Bienvenido a</p>
+            <h1 class="title animate-fadeIn delay-1">ATELIER CONTABLE</h1>
+            <p class="post-title animate-fadeIn delay-2">Finanzas creativas para el arte</p>
+            <a class="btn-atelier animate-fadeIn delay-3" href="#services">NUESTROS SERVICIOS</a> 
+        </div>
+    </section>
+
+    <!-- Sección Nosotros -->
+    <div class="about container w3-padding-large" id="about">
+        <div class="text-one">
+          <h2 class="w3-center">Sobre Nosotros</h2>
+          <p>Somos una microempresa orientada a brindar servicios profesionales dentro del sector empresarial de la Economía Naranja. Nuestra actividad principal se centra en ofrecer consultoría contable y financiera adaptada a las necesidades de artistas, gestores culturales y proyectos creativos, con el fin de fortalecer la economía del sector cultural dentro de Cartagena de Indias, ciudad reconocida por su riqueza cultural y artística.</p>
+        </div>
+      </div>
+
+    <!-- Sección Servicios -->
+    <section class="section services" id="services">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="cards">
+                <div class="card w3-card-2">
+                    <h3>Consultoría contable creativa</h3>
+                    <div class="card-text">
+                        <p>Servicio especializado en la gestión financiera y tributaria del sector cultural, diseñado para responder a las particularidades de los artistas y proyectos creativos. Combina el rigor técnico de la contaduría con un enfoque didáctico y accesible.</p>
+                    </div>
+                </div>
+                <div class="card w3-card-2">
+                    <h3>Informes financieros visuales</h3>
+                    <div class="card-text">
+                        <p>Reportes contables presentados en formatos gráficos y estéticos que facilitan la comprensión, tanto para artistas como para inversionistas. Estos documentos fusionan arte y finanzas, generando confianza y transparencia en la gestión cultural.</p>
+                    </div>
+                </div>
+                <div class="card w3-card-2">
+                    <h3>Gestión de regalías y derechos de autor</h3>
+                    <div class="card-text">
+                        <p>Administración profesional de los derechos de autor y regalías para artistas, asegurando un manejo adecuado de sus ingresos y el cumplimiento de las obligaciones legales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Propuesta de Valor -->
+    <section class="section value-prop" id="value">
+        <div class="container">
+            <h2 class="section-title">Nuestra Propuesta de Valor</h2>
+            <div class="w3-row-padding w3-margin-top">
+                <div class="w3-third">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fa fa-paint-brush"></i>
+                        </div>
+                        <h3>Empoderamiento artístico</h3>
+                        <p>Capacitamos a los artistas para que gestionen sus finanzas de manera autónoma y profesional.</p>
+                    </div>
+                </div>
+                <div class="w3-third">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fa fa-line-chart"></i>
+                        </div>
+                        <h3>Credibilidad ante inversionistas</h3>
+                        <p>Nuestros informes financieros visuales generan confianza y transparencia para atraer inversión.</p>
+                    </div>
+                </div>
+                <div class="w3-third">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fa fa-language"></i>
+                        </div>
+                        <h3>Acceso inclusivo al lenguaje financiero</h3>
+                        <p>Traducimos la complejidad financiera a un lenguaje accesible para los creadores.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-row-padding w3-margin-top">
+                <div class="w3-third">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fa fa-lightbulb-o"></i>
+                        </div>
+                        <h3>Innovación cultural</h3>
+                        <p>Fusionamos arte y finanzas creando nuevas formas de gestionar la economía creativa.</p>
+                    </div>
+                </div>
+                <div class="w3-third">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <h3>Enfoque personalizado</h3>
+                        <p>Adaptamos nuestros servicios a las necesidades específicas de cada artista o proyecto.</p>
+                    </div>
+                </div>
+                <div class="w3-third">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <h3>Especialización local</h3>
+                        <p>Conocemos el ecosistema cultural de Cartagena y sus particularidades económicas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Equipo -->
+    <section class="section team" id="team">
+        <div class="container">
+            <h2 class="section-title">Nuestro Equipo</h2>
+            <div class="w3-row-padding">
+                <div class="w3-quarter">
+                    <div class="team-member">
+                        <div class="team-img"><i class="fa fa-user"></i></div>
+                        <h3>Maria Paula Alcalá Vergara</h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="w3-quarter">
+                    <div class="team-member">
+                        <div class="team-img"><i class="fa fa-user"></i></div>
+                        <h3>Jired Ortiz Cassiani</h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="w3-quarter">
+                    <div class="team-member">
+                        <div class="team-img"><i class="fa fa-user"></i></div>
+                        <h3>Hillary Elena Padilla Muñoz</h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="w3-quarter">
+                    <div class="team-member">
+                        <div class="team-img"><i class="fa fa-user"></i></div>
+                        <h3>Luis Daniel Solipa Castro</h3>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <p class="w3-xlarge w3-center">¡Nos encantaría saber de ti!</p>
+            
+            <div class="contact-grid">
+                <div>
+                    <div class="contact-info">
+                        <i class="fa fa-location-arrow"></i>
+                        <span>Cartagena de Indias, Colombia</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fa fa-envelope-o"></i>
+                        <span><a href="mailto:ateliercontable.ctg@gmail.com">ateliercontable.ctg@gmail.com</a></span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fa fa-phone"></i>
+                        <span><a href="tel:+573216139376">+57 321 613 9376</a></span>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="form-container">
+                    <form id="contact-form">
+                        <div id="form-message" class="form-message"></div>
+                        
+                        <div class="form-group">
+                            <label for="name">Nombre *</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre completo" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo electrónico *</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="tu.email@ejemplo.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="+57 123 456 7890">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Asunto *</label>
+                            <input type="text" id="subject" name="subject" class="form-control" placeholder="Asunto del mensaje" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensaje *</label>
+                            <textarea id="message" name="message" class="form-control" placeholder="Escribe tu mensaje..." required></textarea>
+                        </div>
+                        
+                        <p class="privacy-text">Al enviar este formulario, aceptas nuestra <a href="#" target="_blank">política de privacidad</a></p>
+                        
+                        <button type="submit" class="btn-atelier">Enviar mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 - ATELIER CONTABLE - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // Función para el menú móvil
+        function toggleMobileNavigation() {
+            const mobileNavigation = document.getElementById("mobile-sidenav");
+            mobileNavigation.classList.toggle('mobile-links-active');
+        }
+
+        // Cerrar menú móvil al hacer clic fuera de él
+        document.addEventListener('click', function(event) {
+            const mobileNav = document.getElementById('mobile-sidenav');
+            const mobileButton = document.querySelector('.mobile-button');
+            
+            if (mobileNav.classList.contains('mobile-links-active') && 
+                !mobileNav.contains(event.target) && 
+                !mobileButton.contains(event.target)) {
+                mobileNav.classList.remove('mobile-links-active');
+            }
+        });
+
+        // Formulario de contacto con conexión real al backend
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const messageDiv = document.getElementById('form-message');
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            
+            // Mostrar estado de carga
+            submitButton.disabled = true;
+            submitButton.textContent = 'Enviando...';
+            
+            // Ocultar mensajes previos
+            messageDiv.style.display = 'none';
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        subject: document.getElementById('subject').value,
+                        message: document.getElementById('message').value
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    messageDiv.className = 'form-message success';
+                    messageDiv.innerHTML = '¡Mensaje enviado con éxito! Te hemos enviado un correo de confirmación.';
+                    form.reset();
+                } else {
+                    messageDiv.className = 'form-message error';
+                    if (data.errors) {
+                        messageDiv.innerHTML = 'Errores en el formulario:<br>' + 
+                            data.errors.map(error => `- ${error.msg}`).join('<br>');
+                    } else {
+                        messageDiv.innerHTML = data.message || 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.';
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                messageDiv.className = 'form-message error';
+                messageDiv.innerHTML = 'Error de conexión. Por favor, inténtalo de nuevo o contáctanos directamente.';
+            } finally {
+                messageDiv.style.display = 'block';
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+                
+                // Ocultar mensaje después de 10 segundos
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 10000);
+            }
+        });
+
+        // Animación al hacer scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate-fadeIn');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.visibility = 'visible';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(el => {
+                el.style.visibility = 'hidden';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
