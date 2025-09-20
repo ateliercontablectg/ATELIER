@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const emailRoutes = require('./routes/email');
+const emailRoutes = require('./email');  // ← CAMBIADO: sin carpeta routes/
 
 dotenv.config();
 
@@ -30,7 +30,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Manejo de rutas no encontradas - ENFOQUE ALTERNATIVO
+// Manejo de rutas no encontradas
 app.use((req, res, next) => {
   res.status(404).json({ 
     success: false, 
