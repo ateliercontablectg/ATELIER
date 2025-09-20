@@ -1,15 +1,24 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const emailRoutes = require('./email');  // ← CAMBIADO: sin carpeta routes/
+const emailRoutes = require('./email');
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(cors());
+// Middleware CORS configurado para producción
+app.use(cors({
+  origin: [
+    'https://ateliercontablectg.github.io',  // Tu GitHub Pages
+    'http://localhost:8000',                 // Desarrollo local
+    'http://127.0.0.1:5500',                 // Live Server
+    'http://localhost:3000'                  // Backend local
+  ],
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -39,6 +48,8 @@ app.use((req, res, next) => {
 });
 
 // Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Servidor ejecutándose en puerto ${PORT}`);
+  console.log(`Accesible localmente: http://localhost:${PORT}`);
+  console.log(`Para producción: https://atelier-backend-6vlz.onrender.com`);
 });
